@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Smooth Floating Hearts</title>
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    background: #000;
+    padding-top: 80px; /* space for fixed header */
+  }
+
+  /* Header CSS */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: white;
+  }
+
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 30px;
+    font-size: 1rem;
+    opacity: 0.8;
+    transition: 0.3s;
+  }
+
+  nav a:hover {
+    opacity: 1;
+    color: #ff3366;
+  }
+
+  .heart-scene {
+    position: relative;
+    width: 100vw;
+    height: calc(100vh - 80px); /* full height minus header */
+    overflow: hidden;
+  }
+
+  .heart {
+    position: absolute;
+    width: 230px;
+    height: auto;
+    opacity: 0;
+    animation: floatSmooth 10s ease-in-out forwards;
+    transition: transform 0.5s ease, filter 0.5s ease;
+  }
+
+  @keyframes floatSmooth {
+    0%   { transform: translate(0,0) scale(0.2); opacity: 0; }
+    10%  { opacity: 0.8; }
+    50%  { transform: translate(var(--x), var(--y)) scale(2.5); opacity: 1; }
+    90%  { opacity: 0.8; }
+    100% { transform: translate(var(--x-end), var(--y-end)) scale(1.2); opacity: 0; }
+  }
+
+  .heart:hover {
+    transform: scale(1.6) rotate(5deg);
+    filter: hue-rotate(-60deg) saturate(3) brightness(1.3);
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <h1></h1>
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="reactions.html">Reactions</a>
+  </nav>
+</header>
+
+<!-- Heart Scene -->
+<div class="heart-scene" id="scene"></div>
+
+<script>
+  const scene = document.getElementById('scene');
+  const totalHearts = 70;
+  const batchSize = 10;
+  let currentIndex = 0;
+
+  function createHeart(i) {
+    const heart = document.createElement('img');
+    heart.classList.add('heart');
+    heart.src = `hearts/hearts -${String(i).padStart(2, '0')}.png`;
+
+    heart.style.top = `${Math.random() * 90}%`;
+    heart.style.left = `${Math.random() * 90}%`;
+
+    heart.style.setProperty('--x', `${Math.random() * 200 - 100}px`);
+    heart.style.setProperty('--y', `${Math.random() * -300}px`);
+    heart.style.setProperty('--x-end', `${Math.random() * 100 - 50}px`);
+    heart.style.setProperty('--y-end', `${Math.random() * -400 - 100}px`);
+
+    setTimeout(() => heart.remove(), 10000);
+    scene.appendChild(heart);
+  }
+
+  function showHearts() {
+    for (let j = 0; j < batchSize; j++) {
+      currentIndex++;
+      if (currentIndex > totalHearts) currentIndex = 1;
+      createHeart(currentIndex);
+    }
+  }
+
+  showHearts();
+  setInterval(showHearts, 10000);
+</script>
+
+</body>
+</html>
+
+
+
+
+

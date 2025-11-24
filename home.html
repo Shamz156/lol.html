@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Has Technology Made Love Easier or Emptier?</title>
+<style>
+  body {
+    margin: 0;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    background: #0f0f10;
+    color: white;
+    overflow-x: hidden;
+  }
+
+  /* Header */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 10px;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 30px;
+    font-size: 1rem;
+    opacity: 0.8;
+    transition: 0.3s;
+  }
+
+  nav a:hover {
+    opacity: 1;
+    color: #ff3366;
+  }
+
+  /* Hero Section */
+  .hero {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  /* Floating profile card backgrounds */
+  .card {
+    position: absolute;
+    width: 220px;
+    height: 400px;
+    border-radius: 20px;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    border: 6px solid #0c0c0c;
+    opacity: 0.9;
+    animation: float 8s ease-in-out infinite alternate;
+  }
+
+  .card:nth-child(1) {
+    top: 15%; left: 10%;
+    transform: rotate(-12deg);
+    background-image: url('photos/1.jpg');
+  }
+
+  .card:nth-child(2) {
+    top: 25%; left: 30%;
+    transform: rotate(4deg);
+    background-image: url('photos/2.jpg');
+  }
+
+  .card:nth-child(3) {
+    top: 10%; left: 55%;
+    transform: rotate(-6deg);
+    background-image: url('photos/3.jpg');
+  }
+
+  .card:nth-child(4) {
+    top: 30%; left: 75%;
+    transform: rotate(8deg);
+    background-image: url('photos/4.jpg');
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0) rotate(var(--r)); }
+    100% { transform: translateY(-10px) rotate(var(--r)); }
+  }
+
+  /* Phone and Heart Animation */
+  .phone {
+    position: relative;
+    width: 200px;
+    height: 380px;
+    background: #1a1a1a;
+    border: 5px solid #333;
+    border-radius: 30px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+  }
+
+  .phone::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 6px;
+    background: #555;
+    border-radius: 3px;
+  }
+
+  .heart {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    background-color: #ff3366;
+    transform: rotate(-45deg);
+    animation: heartbeat 1.2s infinite;
+  }
+
+  .heart::before,
+  .heart::after {
+    content: "";
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background-color: #ff3366;
+    border-radius: 50%;
+  }
+
+  .heart::before {
+    top: -40px;
+    left: 0;
+  }
+
+  .heart::after {
+    left: 40px;
+    top: 0;
+  }
+
+  @keyframes heartbeat {
+    0%, 20%, 60%, 100% {
+      transform: rotate(-45deg) scale(1);
+    }
+    40% {
+      transform: rotate(-45deg) scale(1.2);
+    }
+    80% {
+      transform: rotate(-45deg) scale(1.1);
+    }
+  }
+
+  footer {
+    text-align: center;
+    padding: 30px;
+    background: #0a0a0a;
+    opacity: 0.8;
+    font-size: 0.9rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Has technology made love easier or emptier?</h1>
+  <nav>
+    <a href="about.html">About</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="reactions.html">Reactions</a>
+  </nav>
+</header>
+
+
+<section class="hero">
+  <!-- Floating cards (your photos) -->
+  <div class="card"></div>
+  <div class="card"></div>
+  <div class="card"></div>
+  <div class="card"></div>
+
+  <!-- Animated phone with a beating heart -->
+  <div class="phone">
+    <div class="heart"></div>
+  </div>
+</section>
+
+<footer>
+| Exploring Modern Connection |
+</footer>
+
+</body>
+</html>
